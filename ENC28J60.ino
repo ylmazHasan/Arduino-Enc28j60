@@ -1,12 +1,12 @@
 #include <EtherCard.h>
 
-// ethernet interface mac address, must be unique on the LAN
+
 static byte mymac[] = { 0x74,0x69,0x69,0x2D,0x30,0x31 };
 
 byte Ethernet::buffer[700];
 static uint32_t timer;
 
-const char website[] PROGMEM = "www.example.com"; //my router's address
+const char website[] PROGMEM = "www.example.com"; 
 
 // called when the client request is complete
 static void my_callback (byte status, word off, word len) {
@@ -21,7 +21,7 @@ void setup () {
   Serial.println("\n[webClient]");
 
   if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
-      Serial.println("x{\"Name\":\Hasan"\"}"); /// << JSON message is created here, and the first character of the message is removed
+      Serial.println("x{\"Name\":\Hasan"\"}"); 
   if (!ether.dhcpSetup())
 //    Serial.println("DHCP failed");
 
@@ -43,6 +43,6 @@ void loop () {
     Serial.println();
     Serial.print("<<< REQ ");
     ether.httpPost(PSTR("/api/test-api"), website, PSTR("Content-Type: application/json"),
-       PSTR(""), my_callback); // PSTR("") because the message is created after .begin function is called
+       PSTR(""), my_callback); 
     }
 }
